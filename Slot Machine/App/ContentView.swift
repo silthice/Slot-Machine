@@ -54,8 +54,93 @@ struct ContentView: View {
                 
                 
                 //MARK: - SLOT MACHINE
+                VStack(alignment: .center, spacing: 0, content: {
+                    //MARK: - REEL #1
+                    ZStack {
+                        ReelView()
+                        Image("gfx-bell")
+                            .resizable()
+                            .modifier(ImageModifier())
+                    }
+                    
+                    HStack(alignment: .center, spacing: 0, content: {
+                        
+                        //MARK: - REEL #2
+                        ZStack {
+                            ReelView()
+                            Image("gfx-seven")
+                                .resizable()
+                                .modifier(ImageModifier())
+                        }
+                        
+                        Spacer()
+                        
+                        //MARK: - REEL #3
+                        ZStack {
+                            ReelView()
+                            Image("gfx-cherry")
+                                .resizable()
+                                .modifier(ImageModifier())
+                        }
+                    })
+                    .frame(maxWidth: 500)
+                    
+                    
+                    //MARK: - SPIN BUTTON
+                    Button(action: {}, label: {
+                        Image("gfx-spin")
+                            .renderingMode(.original)
+                            .resizable()
+                            .modifier(ImageModifier())
+                    })
+                    
+                }) //: End of VStack
+                .layoutPriority(2)
+                
+                
                 //MARK: - FOOTER
                 Spacer()
+                
+                HStack {
+                    
+                    
+                    HStack(alignment: .center, spacing: 10) {
+                        
+                        //MARK: - BET 10
+                        Button(action: {}, label: {
+                            Text("10")
+                                .fontWeight(.heavy)
+                                .foregroundColor(.yellow)
+                                .modifier(BetNumberModifier())
+                        })
+                        .modifier(BetCapsuleModifier())
+                        
+                        
+                        Image("gfx-casino-chips")
+                            .resizable()
+                            .opacity(1)
+                            .modifier(CasinoChipModifier())
+                        
+                        //MARK: - BET 20
+                        Image("gfx-casino-chips")
+                            .resizable()
+                            .opacity(0)
+                            .modifier(CasinoChipModifier())
+                        
+                        Button(action: {}, label: {
+                            Text("20")
+                                .fontWeight(.heavy)
+                                .foregroundColor(.white)
+                                .modifier(BetNumberModifier())
+                        })
+                        .modifier(BetCapsuleModifier())
+                        
+                        
+                        
+                    } //: End of HStack
+                    
+                    
+                }
             }) //: End of VStack
             //MARK: - BUTTONS
             .overlay(
