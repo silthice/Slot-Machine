@@ -12,7 +12,7 @@ struct ContentView: View {
     //MARK: - PROPERTIES
     @State private var showInfoView: Bool = false
     @State private var reels: Array = [0,1,2]
-    @State private var highScore: Int = 0
+    @State private var highScore: Int = UserDefaults.standard.integer(forKey: "userHighScore")
     @State private var coins: Int = 100
     @State private var betAmount: Int = 10
     @State private var isActiveBet10: Bool = true
@@ -57,9 +57,10 @@ struct ContentView: View {
     func playerWins() {
         coins += betAmount * 10
     }
-    
+
     func newHighScore() {
         highScore = coins
+        UserDefaults.standard.set(highScore, forKey: "userHighScore")
     }
     
     func playerLoses() {
@@ -79,6 +80,13 @@ struct ContentView: View {
             //SHOW MODAL
             showGameoverModal = true
         }
+    }
+    
+    func reset() {
+        highScore = 0
+        coins = 100
+        bet10()
+        UserDefaults.standard.set(0, forKey: "userHighScore")
     }
     
     //MARK: - BODY
@@ -225,7 +233,9 @@ struct ContentView: View {
             }) //: End of VStack
             //MARK: - BUTTONS
             .overlay(
-                Button(action: {}, label: {
+                Button(action: {
+                    reset()
+                }, label: {
                     Image(systemName: "arrow.2.circlepath.circle")
                 })
                 .modifier(ButtonModifier())
