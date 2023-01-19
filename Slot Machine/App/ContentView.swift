@@ -57,10 +57,12 @@ struct ContentView: View {
     }
     
     func playerWins() {
+        playSound(sound: "win", type: "mp3")
         coins += betAmount * 10
     }
 
     func newHighScore() {
+        playSound(sound: "high-score", type: "mp3")
         highScore = coins
         UserDefaults.standard.set(highScore, forKey: "userHighScore")
     }
@@ -71,16 +73,19 @@ struct ContentView: View {
 
     func bet20() {
         betAmount = 20
+        playSound(sound: "casino-chips", type: "mp3")
     }
     
     func bet10() {
         betAmount = 10
+        playSound(sound: "casino-chips", type: "mp3")
     }
     
     func gameover() {
         if coins <= 0 {
             //SHOW MODAL
             showGameoverModal = true
+            playSound(sound: "game-over", type: "mp3")
         }
     }
     
@@ -89,7 +94,7 @@ struct ContentView: View {
         coins = 100
         bet10()
         UserDefaults.standard.set(0, forKey: "userHighScore")
-        animatingSymbol = false
+        playSound(sound: "chimeup", type: "mp3")
     }
     
     //MARK: - BODY
@@ -148,6 +153,7 @@ struct ContentView: View {
                             .animation(.easeOut(duration: Double.random(in: 0.5...1.2)), value: animatingSymbol)
                             .onAppear(perform: {
                                 animatingSymbol.toggle()
+                                playSound(sound: "riseup", type: "mp3")
                             })
                     }
                     
@@ -188,6 +194,7 @@ struct ContentView: View {
                     //MARK: - SPIN BUTTON
                     Button(action: {
                     
+                        playSound(sound: "spin", type: "mp3")
                         withAnimation {
                             animatingSymbol = false
                         }

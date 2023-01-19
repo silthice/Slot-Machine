@@ -25,6 +25,8 @@
 		80C735932977FF3B00E68222 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C735922977FF3B00E68222 /* Text+Extension.swift */; };
 		80C735952978013900E68222 /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C735942978013900E68222 /* ReelView.swift */; };
 		80C735972978E26900E68222 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C735962978E26900E68222 /* InfoView.swift */; };
+		80C735992978FDDB00E68222 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C735982978FDDB00E68222 /* Constant.swift */; };
+		80C7359B2978FDEE00E68222 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C7359A2978FDEE00E68222 /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		80C735922977FF3B00E68222 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
 		80C735942978013900E68222 /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
 		80C735962978E26900E68222 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		80C735982978FDDB00E68222 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		80C7359A2978FDEE00E68222 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 		80C735862977F97800E68222 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				80C735982978FDDB00E68222 /* Constant.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				80C735902977FD4100E68222 /* Modifiers.swift */,
+				80C7359A2978FDEE00E68222 /* AudioPlayer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -262,7 +268,9 @@
 			files = (
 				80C735952978013900E68222 /* ReelView.swift in Sources */,
 				80C735912977FD4100E68222 /* Modifiers.swift in Sources */,
+				80C7359B2978FDEE00E68222 /* AudioPlayer.swift in Sources */,
 				80C735682977F81700E68222 /* ContentView.swift in Sources */,
+				80C735992978FDDB00E68222 /* Constant.swift in Sources */,
 				80C7358F2977FD1400E68222 /* LogoView.swift in Sources */,
 				80C735932977FF3B00E68222 /* Text+Extension.swift in Sources */,
 				80C735662977F81700E68222 /* Slot_MachineApp.swift in Sources */,
