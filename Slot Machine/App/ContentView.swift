@@ -193,7 +193,7 @@ struct ContentView: View {
                     
                     //MARK: - SPIN BUTTON
                     Button(action: {
-                    
+                        hapticFeedback.impactOccurred()
                         playSound(sound: "spin", type: "mp3")
                         withAnimation {
                             animatingSymbol = false
@@ -226,6 +226,7 @@ struct ContentView: View {
                         
                         //MARK: - BET 10
                         Button(action: {
+                            hapticFeedback.impactOccurred()
                             bet10()
                             isActiveBet10 = true
                             isActiveBet20 = false
@@ -253,6 +254,7 @@ struct ContentView: View {
                             .modifier(CasinoChipModifier())
                         
                         Button(action: {
+                            hapticFeedback.impactOccurred()
                             bet20()
                             isActiveBet20 = true
                             isActiveBet10 = false
@@ -274,6 +276,7 @@ struct ContentView: View {
             //MARK: - BUTTONS
             .overlay(
                 Button(action: {
+                    hapticFeedback.impactOccurred()
                     reset()
                 }, label: {
                     Image(systemName: "arrow.2.circlepath.circle")
@@ -283,6 +286,7 @@ struct ContentView: View {
             )
             .overlay(
                 Button(action: {
+                    hapticFeedback.impactOccurred()
                     showInfoView = true
                 }, label: {
                     Image(systemName: "info.circle")
@@ -325,6 +329,7 @@ struct ContentView: View {
                                 .layoutPriority(1)
                             
                             Button(action: {
+                                hapticFeedback.impactOccurred()
                                 showGameoverModal = false
                                 animatingModal = false
                                 bet10()

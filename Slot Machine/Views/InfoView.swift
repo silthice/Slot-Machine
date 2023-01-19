@@ -35,6 +35,7 @@ struct InfoView: View {
         .padding(.top, 40)
         .overlay(
             Button(action: {
+                audioPlayer?.stop()
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 Image(systemName: "xmark.circle")
@@ -45,6 +46,9 @@ struct InfoView: View {
             .tint(.secondary)
             , alignment: .topTrailing
         )
+        .onAppear(perform: {
+            playSound(sound: "background-music", type: "mp3")
+        })
         
     }
 }

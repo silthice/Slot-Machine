@@ -6,3 +6,5 @@
 //
 
 import SwiftUI
+
+let hapticFeedback = UIImpactFeedbackGenerator(style: .heavy)
