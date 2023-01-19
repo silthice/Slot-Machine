@@ -13,10 +13,11 @@ struct ContentView: View {
     @State private var showInfoView: Bool = false
     @State private var reels: Array = [0,1,2]
     @State private var highScore: Int = 0
-    @State private var coins: Int = 0
+    @State private var coins: Int = 100
     @State private var betAmount: Int = 10
     @State private var isActiveBet10: Bool = true
     @State private var isActiveBet20: Bool = false
+    @State private var showGameoverModal: Bool = false
     
     let symbols = ["gfx-bell", "gfx-cherry", "gfx-coin", "gfx-grape", "gfx-seven", "gfx-strawberry"]
     
@@ -34,6 +35,7 @@ struct ContentView: View {
         })
         
         validateWin()
+        gameover()
     }
     
     //WINNING VALIDATION
@@ -48,10 +50,6 @@ struct ContentView: View {
         } else {
             //LOSE
             playerLoses()
-            
-            if coins <= 0 {
-                
-            }
             //GAME OVER
         }
     }
@@ -74,6 +72,13 @@ struct ContentView: View {
     
     func bet10() {
         betAmount = 10
+    }
+    
+    func gameover() {
+        if coins <= 0 {
+            //SHOW MODAL
+            showGameoverModal = true
+        }
     }
     
     //MARK: - BODY
@@ -237,9 +242,67 @@ struct ContentView: View {
             )
             .padding()
             .frame(maxWidth: 720)
+            .blur(radius: $showGameoverModal.wrappedValue ? 5 : 0, opaque: false)
             
             //MARK: - POPUP
-            
+            if $showGameoverModal.wrappedValue {
+                ZStack {
+                    Color("ColorTransparentBlack")
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    VStack(spacing: 0, content: {
+                        Text("Game Over")
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(.pink)
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .center, spacing: 16, content: {
+                            Image("gfx-seven-reel")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 72)
+                            
+                            Text("Bad Luck!, You lost all the coins. \n Let's Play Again")
+                                .font(.system(.body, design: .rounded))
+                                .lineLimit(2)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.gray)
+                                .layoutPriority(1)
+                            
+                            Button(action: {
+                                showGameoverModal = false
+                                coins = 100
+                            }, label: {
+                                Text("New Game".uppercased())
+                                    .font(.system(.body, design: .rounded))
+                                    .fontWeight(.semibold)
+                                    .tint(Color("ColorPink"))
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
+                                    .frame(minWidth: 128)
+                                    .background(
+                                        Capsule()
+                                            .strokeBorder(lineWidth: 1.75)
+                                            .foregroundColor(Color("ColorPink"))
+                                    )
+                            })
+                        })
+                        
+                        Spacer()
+                        
+                    })
+                    .frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: .center)
+                    .background(.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 8)
+                    
+                } //: End of ZStack
+            }
         } //: End of ZStack
         .sheet(isPresented: $showInfoView, content: {
             InfoView()
